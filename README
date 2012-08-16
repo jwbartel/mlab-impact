@@ -1,0 +1,35 @@
+GIT STUFF
+
+#tagging on release change
+git tag -a v0-0-8 -m 'version 0-0-8' 4a1c12e24c8b
+
+BUILD STUFF
+document build requirements in the makefile.
+
+TESTING STUFF
+dev_appserver.py --use_sqlite --backends --high_replication mlab-impact/
+
+#remote
+dev_appserver.py --address=152.2.129.95 --use_sqlite --backends --high_replication mlab-impact/
+
+DEPLOY STUFF
+http://code.google.com/appengine/docs/go/tools/uploadinganapp.html
+
+appcfg.py update mlab-impact --email=gavaletz@gmail.com
+appcfg.py backends update mlab-impact --email=gavaletz@gmail.com
+
+DOWNLOAD LOGS
+
+#standard
+appcfg.py --email=gavaletz@gmail.com --include_all --num_days=1 --end_date=<YYYY-MM-DD> request_logs mlab-impact logs/<YYYY-MM-DD>.log
+
+#debuging
+appcfg.py --noisy --email=gavaletz@gmail.com --include_all --num_days=0 request_logs mlab-impact logs/mlab-impact/<YYYY-MM-DD>.all.log
+
+#code reviews
+upload.py --email=gavaletz@gmail.com --title="Sample code review." --reviewers=gavaletz@google.com --cc=tiziana@google.com --send_mail f1fc667..7f3c7ca
+upload.py --email=gavaletz@gmail.com --title="Sample bug fix." --issue=7001 --send_mail 7f3c7ca3f8d6e214ec25..c2cea02c1997bbbbe32a7c
+
+STYLE STUFF
+gjslint --strict results.js
+fixjsstyle --strict results.js

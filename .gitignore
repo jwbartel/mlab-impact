@@ -1,0 +1,16 @@
+*-comp.js
+*.pyc
+*.tar.gz
+*.p
+*.dat
+#*.gif
+#*.jpg
+#*.ico
+*.swf
+*.swp
+*.[865]
+.nfs*
+gae/mlab-impact/static/*
+*~
+*.DS_Store
+*secrets.go

@@ -1,0 +1,50 @@
+# Go specific http://code.google.com/appengine/docs/go/overview.html
+# Python/details http://code.google.com/appengine/docs/python/config/appconfig.html
+#
+# Uploading http://code.google.com/appengine/docs/python/tools/uploadinganapp.html
+
+application: mlab-impact
+version: 0-0-0
+runtime: go
+api_version: go1
+
+default_expiration: "10s"
+
+handlers:
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+  expiration: "1d"
+
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+  expiration: "30d"
+
+- url: /(.*\.(js|xml|css))
+  static_files: static/\1
+  upload: static/(.*\.(js|xml|css))
+
+- url: /images/(.*\.(gif|jpg|png))
+  static_files: static/images/\1
+  upload: static/images/(.*\.(gif|jpg|png))
+  expiration: "30d"
+
+- url: /admin/.*
+  script: _go_app
+  login: admin
+  auth_fail_action: redirect
+
+- url: /user/.*
+  script: _go_app
+  login: required
+  auth_fail_action: redirect
+
+- url: /_ah/.*
+  script: _go_app
+
+- url: /.*
+  script: _go_app
+
+inbound_services:
+- warmup

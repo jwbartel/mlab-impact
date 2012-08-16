@@ -1,0 +1,85 @@
+#content {
+  position: static;
+  width: 990px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  text-align: center;
+}
+
+#logo {
+  position: static;
+  top: 0px;
+  left: 0px;
+  width: 144px;
+  height: 34px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#question{
+  font: normal 15px/15px arial, sans-serif;
+  position: static; /*fixed;*/
+  top: 0%;
+  left: 0%;
+  width: 238px;
+  height: 241px;
+  margin-top: 10px;/*44px;*/
+  text-align: left;
+}
+
+#submitButton{
+  width: 70px;
+  text-align: center;
+  margin-left: 105px;
+}
+
+#visualizationTabs{
+  position: static;/*fixed;*/
+  width: 725px;
+}
+
+#tabContent{
+  border:1px solid #6B90DA;
+  height: 454px;
+  width: 723px;
+  overflow: auto;
+  text-align: center;
+}
+
+#map{
+  border:1px solid #6B90DA;
+  position: static;
+  top: 285px;
+  left: 10px;
+  width: 250px;
+  height: 195px;
+}
+
+#mapCanvas{
+  width: 100%;
+  height: 100%;
+}
+
+td.selectorTitle {
+  vertical-align: left;
+}
+
+td.entryTitle {
+  width: 80px;
+  vertical-align: middle;
+}
+
+td.entryInput {
+  width: 110px;
+  vertical-align: middle;
+}
+
+.tabContentText{
+  width: 700px;
+  margin-left: 15px;
+  text-align: left;
+  font-family: arial, sans-serif;
+  white-space: pre-wrap;      /* CSS3 */       
+}

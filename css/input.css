@@ -1,0 +1,27 @@
+/*
+ * Copyright 2007 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/* Author: pupius@google.com (Daniel Pupius) */
+/* Author: pallosp@google.com (Peter Pallos) */
+
+input {
+  background-color: #fff;
+  /*border: 0;*/
+  border: 1px solid #b5b6b5;
+  color: #000;
+  font: normal small arial, sans-serif;
+  /*margin: 20px 0px 0px 0px;
+  padding: 0 0 0 2px;
+  vertical-align: bottom;
+  width: 218px;*/
+}
+
+input.label-input-label {
+  background-color: #fff;
+  /*margin-top: -1px;*/
+  color: #aaa;
+}

@@ -1,0 +1,115 @@
+/*#logo {
+  /*font: normal 100px/110px arial, sans-serif;
+  color: #0066cc;*/
+  /*position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 144px;
+  height: 34px;
+  margin-top: -35px;
+  margin-left: -72px;
+}*/
+
+#logoSmall {
+  /*font: normal 50px/50px arial, sans-serif;
+  color: #0066cc;*/
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 200px;
+  height: 35px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#goButton {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: 15px;
+  margin-left: -160px;
+  width: 140px;
+  text-align:center;
+  font: normal 20px arial, sans-serif;
+}
+
+#infoButton {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: 15px;
+  margin-left: 5px;
+  width: 140px;
+  text-align:center;
+  font: normal 20px arial, sans-serif;
+}
+
+#eggButton {
+  font: normal 25px arial, sans-serif;
+  color: #0066cc;
+}
+
+/* Sticky footer stuff */
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  /*min-height: 100%;*/
+  height: auto !important;
+  /* @alternate */ height: 100%;
+  margin: 0px 0px -20px 0px;/*250px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.pushFooter {
+  height: 50px; /* .push must be the same height as .footer */
+}
+
+.pushHeader {
+  height: 80px; /* .push must be the same height as .footer */
+}
+
+.header {
+  position: static;
+  top: 0%;
+  width: 100%;
+  text-align: right;
+  margin-left: -10px;
+  margin-top: 10px;
+  height: 20px; /* .push must be the same height as .footer */
+  font: normal 14px/20px arial, sans-serif;
+}
+
+.footer {
+  position: static;
+  height: 20px; /* .push must be the same height as .footer */
+  text-align: center;
+  font: normal 14px/20px arial, sans-serif;
+}
+
+.footer, .header a,
+.footer, .header a:link,
+.footer, .header a:visited,
+.footer, .header a:hover,
+.footer, .header a:active {
+  color: #2288bb;
+}
+
+div.goog-zippy-content {
+  border: 1px solid #b5b6b5;
+  padding: 10px;
+  width: 632px;
+  margin: 2px;
+}
+
+div.goog-zippy-header {
+  width: 640px;
+}
+
+td {
+  white-space: nowrap;
+}

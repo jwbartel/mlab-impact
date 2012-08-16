@@ -1,0 +1,62 @@
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/*
+ * Styling for flat buttons created by goog.ui.FlatButtonRenderer.
+ *
+ * @author brianp@google.com (Brian Peterson)
+ */
+
+.goog-flat-button {
+  background-color: #fff;
+  background: #ddd url(/images/closure/button-bg.gif) repeat-x scroll left top;
+  border: 1px solid #b5b6b5;
+  color: #000;
+  cursor: pointer;
+  font: normal small arial, sans-serif;
+  margin: 2px;
+  outline: none;
+  padding: 2px 6px;
+  position: relative;
+  /*-moz-outline: none;*/
+  /*width: 20ex;*/
+}
+
+/* State: disabled. */
+.goog-flat-button-disabled {
+  border-color: #888;
+  color: #888;
+  background-color: #ccc;
+  cursor: default;
+}
+
+/* State: hover. */
+.goog-flat-button-hover {
+  border-color: #000;
+}
+
+/* State: active, selected, checked. */
+.goog-flat-button-active,
+.goog-flat-button-selected,
+.goog-flat-button-checked {
+  border-color: #000;
+}
+
+/* State: focused. */
+.goog-flat-button-focused {
+  border-color: #000;
+}
+
+/* Pill (collapsed border) styles. */
+.goog-flat-button-collapse-right {
+  margin-right: 0;
+}
+
+.goog-flat-button-collapse-left {
+  margin-left: 0;
+  border-left: none;
+}
