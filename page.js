@@ -275,7 +275,7 @@ page.footerSetup = function() {
     var source = goog.dom.createDom('a',
         {'href': 'http://code.google.com/p/mlab-impact/', 'target': '_blank'},
         'source code');
-    var mlab = goog.dom.createDom('a', {'href': 'http://news.net-score.org',
+    var mlab = goog.dom.createDom('a', {'href': 'http://www.measurementlab.net/',
       'target': '_blank'}, 'measurement lab');
     var netscore = goog.dom.createDom('a',
         {'href': 'http://www.net-score.org', 'target': '_blank'},
