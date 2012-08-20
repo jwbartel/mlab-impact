@@ -514,21 +514,28 @@ page.setupNetworkTab = function(result) {
   var graph1 = goog.dom.createDom('div', {'id': 'graph1', 'class': 'chart'});
   var graph2 = goog.dom.createDom('div', {'id': 'graph2', 'class': 'chart'});
   var graph3 = goog.dom.createDom('div', {'id': 'graph3', 'class': 'chart'});
+  var graph4 = goog.dom.createDom('div', {'id': 'graph4', 'class': 'chart'});
+  var graph5 = goog.dom.createDom('div', {'id': 'graph5', 'class': 'chart'});
+  var graph6 = goog.dom.createDom('div', {'id': 'graph6', 'class': 'chart'});
 
   table = page.putIn1X3Table(graph1, graph2, graph3);
+  table2 = page.putIn1X3Table(graph4, graph5, graph6);
   goog.dom.appendChild(page.tabContent, table);
+  goog.dom.appendChild(page.tabContent, table2);
 
-  if (result['network data']['MaxRTT'] != null &&
-      result['network data']['SumRTT'] != null) {
+  if (result['network data']['SampleRTT'] != null &&
+      result['network data']['SmoothedRTT'] != null &&
+      result['network data']['MaxRTT'] != null) {
     var RTTData = [
       [
-        parseFloat(result['network data']['MaxRTT']['average']),
-        parseFloat(result['network data']['SumRTT']['average'])
+        parseFloat(result['network data']['SampleRTT']['average']),
+        parseFloat(result['network data']['SmoothedRTT']['average']),
+        parseFloat(result['network data']['MaxRTT']['average'])
       ]
     ];
 
-    var RTTCategories = ['Max', 'Sum'];
-    var RTTTypes = ['number', 'number'];
+    var RTTCategories = ['Sample', 'Smoothed', 'Max'];
+    var RTTTypes = ['number', 'number', 'number'];
     var RTTdataObj = results.categorizedDataToObject('',
         ['RTT'], '', RTTData, RTTCategories, RTTTypes);
     results.columnChart(RTTdataObj, '', true, 225, graph1);
@@ -564,6 +571,36 @@ page.setupNetworkTab = function(result) {
         ['Congestion'], '', CongData, CongCategories, CongTypes);
 
     results.columnChart(CongdataObj, '', true, 225, graph3);
+  }
+
+  if (result['network data']['SmoothedRTT'] != null) {
+    var CongData = [
+      [
+        parseFloat(result['network data']['CurMSS']['average'])/parseFloat(result['network data']['SmoothedRTT']['average'])
+      ]
+    ];
+    var CongCategories = ['Current'];
+    var CongTypes = ['number'];
+    var CongdataObj = results.categorizedDataToObject('',
+        ['Throughput'], '', CongData, CongCategories, CongTypes);
+
+    results.columnChart(CongdataObj, '', true, 225, graph5);
+  }
+
+  if (result['network data']['DataSegsIn'] != null &&
+          result['network data']['DataSegsOut'] != null) {
+    var CongData = [
+      [
+        parseFloat(result['network data']['DataSegsIn']['average']),
+        parseFloat(result['network data']['DataSegsOut']['average'])
+      ]
+    ];
+    var CongCategories = ['In', 'Out'];
+    var CongTypes = ['number', 'number'];
+    var CongdataObj = results.categorizedDataToObject('',
+        ['Data Segments'], '', CongData, CongCategories, CongTypes);
+
+    results.columnChart(CongdataObj, '', true, 225, graph4);
   }
 };
 
