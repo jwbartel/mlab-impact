@@ -484,8 +484,15 @@ page.setupProjectInfoTab = function() {
   header1 = goog.dom.createDom('h2', {'class': 'tabContentText'}, 'Project Overview');
   content1 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'The effects of network properties may have long reaching implications beyond effective file and data transfer.  With the use of the Internet and networked systems in domains such as commerce and social communication, inefficiencies or variations in connections can correspond to major differences in these outside domains. The goal of this project is to unite these network properties with outside domains to better understand the effects they have on each other.');
 
-  header2 = goog.dom.createDom('h2', {'class': 'tabContentText'}, 'Data Sources');
-  content2 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'We use data collected from multiple sources, which currently include data connected through netscore and the United States Census API, both of which are linked in the footer below.  The census data is comprised of data from the American Community Survey (ACS) and the 2010 Census Summary File 1 (SF1).');
+  header2 = goog.dom.createDom('h2', {'class': 'tabContentText'}, 'Life of a query');
+  content2 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'Each query begins using the forms shown on the left.  In this form, you can restrict the client or the server to a specific locality based on a city, region, and/or country, or based on a latitude and longitude.  The client is the location that initiated the tests that collected the network data displayed here.  The server is the location that received and responded to the test.'
+  
+   content3 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'When you hit submit, we first pass your specifications to Google Geolocator to map your locations and fix any errors in your entries. This means you can use any standard abberviations you would normally use to find a location on Google Maps.  From here, we pass this information to our backend which searches our data sources to find matching tests and census information pertaining to your query.  This  query is sent as GET request, such as the following: "http://mlab-impact.appspot.com/query?cType=cityregioncountry&cRegion=Michigan&cCountry=United+States&sType=cityregioncountry&sCity=New+York&sCounty=New+York&sRegion=New+York&sCountry=United+States .  Because this data is retrieved through a GET request, you also have the option of using only GET requests to retrieve your data.  Of course there will not be any correction of locality information or visualizations, so we recommend this for experienced users only.');
+  
+   content4 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'When our backend receives the query, we retrieve the appropriate census information if it is available.  We then ask out collection of network tests for the appropriate statistics based on your query.  Because of the large number of tests, this can take a significant amount of time, so we do not always wait for it to complete.  If it completes quickly, we return the result when you first ask us.  However, if there is a longer wait, we send back the census information and tell your end to periodically check with us if the job has completed.  We will generate visualizations for the census information as soon as possible and generate visualizations  for the network data as they become available.');
+
+  header5 = goog.dom.createDom('h2', {'class': 'tabContentText'}, 'Data Sources');
+  content5 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'We use data collected from multiple sources, which currently include data collected through measurement lab and the United States Census API, both of which are linked in the footer below.  The census data is comprised of data from the American Community Survey (ACS) and the 2010 Census Summary File 1 (SF1).');
 
   goog.dom.appendChild(page.tabContent, goog.dom.createDom('br'));
   goog.dom.appendChild(page.tabContent, header1);
@@ -493,6 +500,11 @@ page.setupProjectInfoTab = function() {
   goog.dom.appendChild(page.tabContent, goog.dom.createDom('br'));
   goog.dom.appendChild(page.tabContent, header2);
   goog.dom.appendChild(page.tabContent, content2);
+  goog.dom.appendChild(page.tabContent, content3);
+  goog.dom.appendChild(page.tabContent, content4);
+  goog.dom.appendChild(page.tabContent, goog.dom.createDom('br'));
+  goog.dom.appendChild(page.tabContent, header5);
+  goog.dom.appendChild(page.tabContent, content5);
 };
 
 
@@ -537,7 +549,7 @@ page.setupNetworkTab = function(result) {
     var RTTCategories = ['Sample', 'Smoothed', 'Max'];
     var RTTTypes = ['number', 'number', 'number'];
     var RTTdataObj = results.categorizedDataToObject('',
-        ['RTT'], '', RTTData, RTTCategories, RTTTypes);
+        ['RTT (ms)'], '', RTTData, RTTCategories, RTTTypes);
     results.columnChart(RTTdataObj, '', true, 225, graph1);
   }
 
@@ -573,16 +585,16 @@ page.setupNetworkTab = function(result) {
     results.columnChart(CongdataObj, '', true, 225, graph3);
   }
 
-  if (result['network data']['SmoothedRTT'] != null) {
+  if (result['network data']['CurCwnd']['average'] != null && result['network data']['SmoothedRTT'] != null) {
     var CongData = [
       [
-        parseFloat(result['network data']['CurMSS']['average'])/parseFloat(result['network data']['SmoothedRTT']['average'])
+        (parseFloat(result['network data']['CurCwnd']['average'])/parseFloat(result['network data']['SmoothedRTT']['average']))/
       ]
     ];
     var CongCategories = ['Current'];
     var CongTypes = ['number'];
     var CongdataObj = results.categorizedDataToObject('',
-        ['Throughput'], '', CongData, CongCategories, CongTypes);
+        ['Throughput (Mb/s)'], '', CongData, CongCategories, CongTypes);1048.576
 
     results.columnChart(CongdataObj, '', true, 225, graph5);
   }
