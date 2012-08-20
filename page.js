@@ -277,16 +277,13 @@ page.footerSetup = function() {
         'source code');
     var mlab = goog.dom.createDom('a', {'href': 'http://www.measurementlab.net/',
       'target': '_blank'}, 'measurement lab');
-    var netscore = goog.dom.createDom('a',
-        {'href': 'http://www.net-score.org', 'target': '_blank'},
-        'net-score');
     var usCensusAPI = goog.dom.createDom('a',
         {'href': 'http://www.census.gov/developers', 'target': '_blank'},
         'united states census api');
     var br = goog.dom.createDom('br');
     var legalese = 'This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.';
     page.footer = goog.dom.createDom('div', {'id': 'footer', 'class': 'footer'},
-        source, ' | ', mlab, ' | ', netscore, ' | ', usCensusAPI, br, legalese);
+        source, ' | ', mlab, ' | ', usCensusAPI, br, legalese);
     goog.dom.appendChild(document.body, page.footer);
   }
 };
@@ -485,7 +482,7 @@ page.setupProjectInfoTab = function() {
   content1 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'The effects of network properties may have long reaching implications beyond effective file and data transfer.  With the use of the Internet and networked systems in domains such as commerce and social communication, inefficiencies or variations in connections can correspond to major differences in these outside domains. The goal of this project is to unite these network properties with outside domains to better understand the effects they have on each other.');
 
   header2 = goog.dom.createDom('h2', {'class': 'tabContentText'}, 'Life of a query');
-  content2 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'Each query begins using the forms shown on the left.  In this form, you can restrict the client or the server to a specific locality based on a city, region, and/or country, or based on a latitude and longitude.  The client is the location that initiated the tests that collected the network data displayed here.  The server is the location that received and responded to the test.'
+  content2 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'Each query begins using the forms shown on the left.  In this form, you can restrict the client or the server to a specific locality based on a city, region, and/or country, or based on a latitude and longitude.  The client is the location that initiated the tests that collected the network data displayed here.  The server is the location that received and responded to the test.');
   
    content3 = goog.dom.createDom('p', {'class': 'tabContentText'}, 'When you hit submit, we first pass your specifications to Google Geolocator to map your locations and fix any errors in your entries. This means you can use any standard abberviations you would normally use to find a location on Google Maps.  From here, we pass this information to our backend which searches our data sources to find matching tests and census information pertaining to your query.  This  query is sent as GET request, such as the following: "http://mlab-impact.appspot.com/query?cType=cityregioncountry&cRegion=Michigan&cCountry=United+States&sType=cityregioncountry&sCity=New+York&sCounty=New+York&sRegion=New+York&sCountry=United+States .  Because this data is retrieved through a GET request, you also have the option of using only GET requests to retrieve your data.  Of course there will not be any correction of locality information or visualizations, so we recommend this for experienced users only.');
   
@@ -586,15 +583,20 @@ page.setupNetworkTab = function(result) {
   }
 
   if (result['network data']['CurCwnd']['average'] != null && result['network data']['SmoothedRTT'] != null) {
+    
+    var cwnd = parseFloat(result['network data']['CurCwnd']['average'])
+    var rtt = parseFloat(result['network data']['SmoothedRTT']['average'])
+    var throughput = cwnd/rtt
+    var throughput = throughput / 1048.576
     var CongData = [
       [
-        (parseFloat(result['network data']['CurCwnd']['average'])/parseFloat(result['network data']['SmoothedRTT']['average']))/
+        throughput
       ]
     ];
     var CongCategories = ['Current'];
     var CongTypes = ['number'];
     var CongdataObj = results.categorizedDataToObject('',
-        ['Throughput (Mb/s)'], '', CongData, CongCategories, CongTypes);1048.576
+        ['Throughput (Mb/s)'], '', CongData, CongCategories, CongTypes);
 
     results.columnChart(CongdataObj, '', true, 225, graph5);
   }
