@@ -707,7 +707,7 @@ page.setupIncomeTab = function(result) {
 
     var incomeDataObj = results.categorizedDataToObject('Income',
         incomeTitles, '', incomeData, incomeCategories, incomeTypes);
-    results.pieChart(incomeDataObj, 'Client Incomes', graph1);
+    results.columnChart(incomeDataObj, 'Client Incomes', false, 723, graph1);
   }
 
   if (result['ACS']['server'] != null &&
@@ -735,7 +735,8 @@ page.setupIncomeTab = function(result) {
 
     var incomeDataObj = results.categorizedDataToObject('Income',
         incomeTitles, '', incomeData, incomeCategories, incomeTypes);
-    results.pieChart(incomeDataObj, 'Server Incomes', graph2);
+    //results.pieChart(incomeDataObj, 'Server Incomes', graph2);
+    results.columnChart(incomeDataObj, 'Server Incomes', false, 723, graph2);
   }
 };
 
